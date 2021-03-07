@@ -31,7 +31,7 @@ XButton = Button (1)
 OButton = Button (7)
 TButton = Button (8)
 SButton = Button (25)
-address='localhost:5000'
+address='162.208.92.132:5000'
 
 
 buttonClient = iagoClient(address)
