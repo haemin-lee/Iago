@@ -27,10 +27,10 @@ class iagoClient():
         pprint(response.json())
 
 #GPIO button stuff/hardware 
-XButton = Button (1)
-OButton = Button (7)
-TButton = Button (8)
-SButton = Button (25)
+xButton = Button(1)
+oButton = Button(7)
+tButton = Button(8)
+sButton = Button(25)
 
 
 address='162.208.92.132:5000'
@@ -38,17 +38,16 @@ address='162.208.92.132:5000'
 
 buttonClient = iagoClient(address)
 while True:
-    buttonClient.send_press("aButtonWasntActaullyPressedImJustTesting", address)
-    if  XButton.is_pressed:
-        buttonClient.send_press("blue", address)
+    if  xButton.is_pressed:
         print("blue")
-    elif OButton.is_pressed:
-        buttonClient.send_press("yellow", address)
+        buttonClient.send_press("blue", address)
+    elif oButton.is_pressed:
         print("yellow")
-    elif TButton.is_pressed:
-        buttonClient.send_press('green', address)
+        buttonClient.send_press("yellow", address)
+    elif tButton.is_pressed:
         print("green")
-    elif SButton.is_pressed:
-        buttonClient.send_press('red', address)
+        buttonClient.send_press('green', address)
+    elif sButton.is_pressed:
         print("red")
+        buttonClient.send_press('red', address)
     sleep(0.5)
