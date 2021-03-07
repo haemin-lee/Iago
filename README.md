@@ -1,5 +1,7 @@
 # Iago 
 
+![alt text](https://github.com/haemin-lee/Iago/blob/main/Iago_SplashScreen.PNG)
+
 ## How to run python flask server:
 % cd Iago/server
 
