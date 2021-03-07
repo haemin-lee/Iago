@@ -3,7 +3,7 @@
 ![alt text](https://github.com/haemin-lee/Iago/blob/main/Iago_SplashScreen.PNG)
 
 ### How to run python flask server: 
-**% cd Iago/server <br/>**
+**% cd Iago/server <br/> **
 
 [only need to do this once] <br/>
 **% export FLASK_APP=server.py <br/> **
