@@ -1,34 +1,44 @@
 from flask import Flask
 from flask import request
 from flask import jsonify
+from flask_sqlalchemy import SQLAlchemy
 import json
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///buttons.db'
 
-# @app.route("/")
-# def index():
-#     headers = request.headers
-#     return "Request headers:\n" + str(headers)
+db = SQLAlchemy(app)
 
-# content = jsonify({"hello" : "world"})
+class Buttons(db.Model):
+    id = db.Column(db.String, primary_key=True)
+    color = db.Column(db.String(20), nullable=False)
+
+new_button = Buttons(id="button", color="Black")
+
+try:
+    db.session.add(new_button)
+    db.session.commit()
+except:
+    return "There was error adding the first element of db"
+
 @app.route('/',methods = ['POST', 'GET'])
 def result():
     print("Entered result()")
-    content = "default"
 
-    # result = "oopsie"
     if request.method == 'POST':
-        result = request.form
-        headers = request.headers
         content = request.get_json(force=True)
-        # print()
-        # return "Request\n\nresult:\n" + str(result) + "\nheaders:\n" + str(headers) + "\ncontent:\n" + content
-        return jsonify(content)
+        thiscolor = content['button']
+
+        x = db.session.query(Buttons).get("button")
+        x.color = thiscolor
+        db.session.commit()
+
+        return str(content)
 
     if request.method == 'GET':
-        # result = content
-        # content = request.args.get('button')
-        return "Request\n\nresult:\n" + "\ncontent:\n" + content
+        x = db.session.query(Buttons).first()
+        thiscolor = x.color
+        return str(thiscolor)
 
 
 

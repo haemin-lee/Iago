@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { login, logout } from '../redux/user'
 
 import Home from './home'
-import { LoginDoctor, LoginUser, Register } from './auth'
+import { LoginDoctor, LoginUser, Register, Logout } from './auth'
 import Dash from './dash'
 import Setup from './setup'
 import About from './about'
@@ -26,10 +26,46 @@ function NavbarLink(props: any) {
     )
 }
 
-function Navbar(props: any) {
+function Navbar(props) {
     const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
+    /* function returnNavBar()
+    {
+        if(props.value.whichPage == 3)
+        {
+            return (
+                <>
+                    <Nav className="mr-auto">
+                        <NavbarLink to="/about">About</NavbarLink>
+                        <NavbarLink to={{ pathname: '/', hash: 'contact' }}>
+                            Contact
+                        </NavbarLink>
+                    </Nav>
+                    <Nav>
+                        <NavbarLink to="/loginDoctor">Doctor Login</NavbarLink>
+                    </Nav>
+                    <Nav>
+                        <NavbarLink to="/loginUser">User Login</NavbarLink>
+                    </Nav>
+                </>
+            );
+        }
+        else
+        {
+            <>
+                <Nav className="mr-auto">
+                <NavbarLink to="/about">About</NavbarLink>
+                <NavbarLink to={{ pathname: '/', hash: 'contact' }}>
+                    Contact
+                </NavbarLink>
+                </Nav>
+                <Nav>
+                    <NavbarLink to="/logout">Logout</NavbarLink>
+                </Nav>
+            </>
+        }
+    } */
     return (
         <BSNavbar expand="lg">
             <Link to="/" className="navbar-brand">
@@ -42,7 +78,6 @@ function Navbar(props: any) {
                     <>
                         <Nav className="mr-auto">
                             <NavbarLink to="/about">About</NavbarLink>
-                            <NavbarLink to="/projects">Product</NavbarLink>
                             <NavbarLink to={{ pathname: '/', hash: 'contact' }}>
                                 Contact
                             </NavbarLink>
@@ -74,7 +109,7 @@ function Navbar(props: any) {
                             </NavbarLink>
                         </Nav>
                     </>
-                )}
+                )} 
             </BSNavbar.Collapse>
         </BSNavbar>
     )
@@ -105,6 +140,9 @@ function App() {
                     </Route>
                     <Route exact path="/">
                         <Home />
+                    </Route>
+                    <Route exact path="/about">
+                        <About />
                     </Route>
                 </Switch>
             );
@@ -139,6 +177,9 @@ function App() {
                     <Route exact path="/loginUser">
                         <LoginUser value={whichPage} onChange={changeWhichPageFromChild} />
                     </Route>
+                    <Route exact path="/about">
+                        <About />
+                    </Route>
                 </Switch>
             );
         }
@@ -146,7 +187,7 @@ function App() {
 
     return (
         <Router>
-            <Navbar />
+            <Navbar value={whichPage} />
             {conditionalRender()}
         </Router>
     )

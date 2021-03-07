@@ -15,7 +15,13 @@ function LoginDoctor(props) {
         e.preventDefault()
         //await dispatch(login({ email, password }))
         history.push('/')
-        props.onChange(1);
+        if(email == "doctor@gmail.com" && password == "doctor")
+        {
+            props.onChange(1);
+        }
+        else{
+            alert("bad email or password");
+        }
     }
 
     return (
@@ -63,7 +69,14 @@ function LoginUser(props) {
         e.preventDefault()
         //await dispatch(login({ email, password }))
         history.push('/')
-        props.onChange(2);
+
+        if(email == "user@gmail.com" && password == "user")
+        {
+            props.onChange(2);
+        }
+        else{
+            alert("bad email or password");
+        }
     }
 
     return (
@@ -153,5 +166,7 @@ function Register() {
         </div>
     )
 }
+
+
 
 export { LoginDoctor, LoginUser, Register }
