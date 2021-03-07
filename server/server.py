@@ -27,8 +27,8 @@ def result():
 
     if request.method == 'GET':
         # result = content
-        # content = request.args.get('button')
-        return "Request\n\nresult:\n" + "\ncontent:\n" + content
+        content = request.args.get('Button')
+        return "Request<br>result:<br>" + "<br>content:<br><br>" + str(content)
 
 
 
