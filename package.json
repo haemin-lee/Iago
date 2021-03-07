@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "axios": "^0.21.1",
-    "emailjs-com": "^2.6.4"
+    "emailjs-com": "^2.6.4",
+    "vanta": "^0.5.21"
   }
 }

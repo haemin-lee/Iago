@@ -43,6 +43,20 @@ function Dash() {
 
     const user = useSelector((state) => state.user)
 
+    // function getRequest()
+    // {
+    //     axios.get("http://127.0.0.1:5000/")
+    //     .then(function (response) {
+    //     console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //     console.log(error);
+    //     })
+    //     .then(function () {
+    //     // always executed
+    //     });
+    // }
+
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
       
@@ -91,11 +105,11 @@ function Dash() {
                                 </div>
                             </Col>
                             <Col>
-                            <div
-                            onClick={() => handlePicClick(1)}>
-                                2.
-                                {GridItem(1)}
-                            </div>
+                                <div
+                                onClick={() => handlePicClick(1)}>
+                                    2.
+                                    {GridItem(1)}
+                                </div>
                             </Col>
                         </Row>
                         <Row>
@@ -127,13 +141,14 @@ function Dash() {
                     <h3>Score: {correct}/5</h3>
                 </div>
             );
-
+        
         }
         
     }
 
     function handlePicClick(num)
     {
+
         if(num == randomNum)
         {
             //correct
@@ -147,17 +162,29 @@ function Dash() {
             alert(errorMsg);
         }
         counter++;
-        shuffle(personArray);
+        shuffle(personArrState);
+        console.log(personArrState);
         let temp =  min + Math.random() * (max - min);
         setRandomNum(Math.round(temp));
     }
 
     useEffect(() => {
+        /* var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText);
+                    console.log("")
+                    //Request was successful
+                }
+            };
+            xhr.open('GET', 'https://cors-anywhere.herokuapp.com/https://localhost:5000', true);
+            xhr.setRequestHeader("Content-type", "application/json"); */
         let temp =  min + Math.random() * (max - min);
         setRandomNum(Math.round(temp));
         let tempPersonArray = personArray;
         shuffle(tempPersonArray);
     }, [])
+
 
     
     return (
