@@ -23,13 +23,16 @@ def result():
         content = request.get_json(force=True)
         # print()
         # return "Request\n\nresult:\n" + str(result) + "\nheaders:\n" + str(headers) + "\ncontent:\n" + content
+        print("this is the content being posted:\n" + jsonify(content))
         return jsonify(content)
 
     if request.method == 'GET':
         # result = content
         # content = request.args.get('Button')
-        content = request.get_json(force=True)
+        content = request.json['Button']
+        # content = request.get_json(force=True)
         # return "Request<br>result:<br>" + "<br>content:<br><br>" + str(content)
+        print("okay now this is the content that was gotten:\n" + jsonify(content))
         return jsonify(content)
 
 
