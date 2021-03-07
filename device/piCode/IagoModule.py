@@ -1,8 +1,9 @@
-from pprint import pprint
+# from pprint import pprint
 
 from gpiozero import Button 
 from time import sleep
 from flask import Flask
+# from flask import jsonify
 import requests 
 import json 
 
@@ -30,7 +31,7 @@ class iagoClient():
                                 data=json.dumps(payload))
 
 
-        pprint(response.json())
+        print(response.json())
         # jsonify(response.json())
 
 #GPIO button stuff/hardware 
