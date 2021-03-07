@@ -169,16 +169,8 @@ function Dash() {
     }
 
     useEffect(() => {
-        /* var xhr = new XMLHttpRequest()
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log(xhr.responseText);
-                    console.log("")
-                    //Request was successful
-                }
-            };
-            xhr.open('GET', 'https://cors-anywhere.herokuapp.com/https://localhost:5000', true);
-            xhr.setRequestHeader("Content-type", "application/json"); */
+        axios.get("http://localhost:5000").then(response => console.log(response));
+
         let temp =  min + Math.random() * (max - min);
         setRandomNum(Math.round(temp));
         let tempPersonArray = personArray;
