@@ -70,13 +70,13 @@ function LoginUser(props) {
         //await dispatch(login({ email, password }))
         history.push('/')
 
-        if(email == "user@gmail.com" && password == "user")
-        {
+        //if(email == "user@gmail.com" && password == "user")
+        //{
             props.onChange(2);
-        }
-        else{
-            alert("bad email or password");
-        }
+        //}
+        //else{
+           // alert("bad email or password");
+        //}
     }
 
     return (

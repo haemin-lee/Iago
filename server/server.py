@@ -10,7 +10,7 @@ app = Flask(__name__)
 #     if 'color' not in g:
 #         g.color = "black"
 #     return g.color
-color = "black"
+color = "null"
 
 @app.route('/',methods = ['POST', 'GET'])
 def result():
@@ -29,6 +29,7 @@ def result():
     if request.method == 'GET':
         # with app.app_context(): 
         c = color
+        color = "null"
         # c = g.color
         print("got color: " + c)
         return c

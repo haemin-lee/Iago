@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { Row, Col, Container} from "react-bootstrap";
 import axios from 'axios'
@@ -93,8 +93,8 @@ function Dash() {
                         <Row>
                             <Col>
                                 <div
-                                 style={{backgroundColor:"#F04848"}}
-                                onClick={() => handlePicClick(0)}>
+                                 style={{backgroundColor:"#87a96b"}} 
+                                onClick={() => handlePicClick(0)}> 
                                     <Container>
                                         <Row>
                                             <Col >
@@ -149,7 +149,7 @@ function Dash() {
                         <Row>
                             <Col>
                                 <div
-                                style={{backgroundColor:"#87a96b"}}
+                                style={{backgroundColor:"#3895d3"}} 
                                 onClick={() => handlePicClick(2)}>
                                     <Container>
                                         <Row>
@@ -177,7 +177,7 @@ function Dash() {
                             </Col>
                             <Col>
                             < div
-                                style={{backgroundColor:"#3895d3"}}
+                                style={{backgroundColor:"#F04848"}} 
                                 onClick={() => handlePicClick(3)}>
                                       <Container>
                                         <Row>
@@ -248,31 +248,101 @@ function Dash() {
         
     }
 
-    function handlePicClick(num)
+    function handlePicClick(response)
     {
+        console.log(response);
+        let num = 0;
+        if(response !== null)
+        {
+            if(response === "green")
+            {
+                num = 0;
+            }
+            else if(response === "yellow")
+            {
+                num = 1;
+            }
+            else if(response === "blue")
+            {
+                num = 2;
+            }
+            else if(response === "red")
+            {
+                num = 3;
+            }
 
-        if(num == randomNum)
-        {
-            //correct
-            alert("good job! That is correct");
-            correct = correct + 1;
-           
+            if(num == randomNum)
+            {
+                //correct
+                alert("good job! That is correct");
+                correct = correct + 1;
+            
+            }
+            else
+            {
+                let errorMsg = "Incorrect. That was actually " + personArrState[num].name;
+                alert(errorMsg);
+            }
+            counter++;
+            shuffle(personArrState);
+            let temp =  min + Math.random() * (max - min);
+            setRandomNum(Math.round(temp));          
         }
-        else
-        {
-            let errorMsg = "Incorrect. That was actually " + personArrState[num].name;
-            alert(errorMsg);
+        else{
+            console.log(response);
         }
-        counter++;
-        shuffle(personArrState);
-        console.log(personArrState);
-        let temp =  min + Math.random() * (max - min);
-        setRandomNum(Math.round(temp));
     }
 
-    useEffect(() => {
-        axios.get("http://localhost:5000").then(response => console.log(response));
+    const useInterval = (callback, delay) => {
+        const savedCallback = useRef();
+      
+        useEffect(() => {
+          savedCallback.current = callback;
+        }, [callback]);
+      
+        useEffect(() => {
+          function tick() {
+            savedCallback.current();
+          }
+          if (delay !== null) {
+            let id = setInterval(tick, delay);
+            return () => clearInterval(id);
+          }
+        }, [delay]);
+      };
 
+    useInterval(() => {
+        axios.get("http://4e96779c750a.ngrok.io/").then(response => 
+            handlePicClick(response.data)
+            /*{
+                if(response.data != "null")
+                {
+                    if(response.data === "red")
+                    {
+                        handlePicClick(0);
+                    }
+                    else if(response.data === "yellow")
+                    {
+                        handlePicClick(1);
+                    }
+                    else if(response.data === "green")
+                    {
+                        handlePicClick(2);
+                    }
+                    else if(response.data === "blue")
+                    {
+                        handlePicClick(3);
+                    }
+                    
+                }
+        }*/
+
+        );
+
+      }, 1000);
+
+    useEffect(() => {
+        
         let temp =  min + Math.random() * (max - min);
         setRandomNum(Math.round(temp));
         let tempPersonArray = personArray;
