@@ -18,18 +18,19 @@ def result():
 
     # result = "oopsie"
     if request.method == 'POST':
-        result = request.form
-        headers = request.headers
-        content = request.get_json(force=True)
+        # result = request.form
+        # headers = request.headers
+        # content = request.get_json(force=True)
         # print()
         # return "Request\n\nresult:\n" + str(result) + "\nheaders:\n" + str(headers) + "\ncontent:\n" + content
-        return jsonify(content)
+        return jsonify(request.json)
 
     if request.method == 'GET':
         # result = content
-        content = request.args.get('Button')
-        return "Request<br>result:<br>" + "<br>content:<br><br>" + str(content)
-
+        # content = request.args.get('Button')
+        content = request.get_json(force=True)
+        # return "Request<br>result:<br>" + "<br>content:<br><br>" + str(content)
+        return jsonify(content)
 
 
 if __name__ == "_main_":
