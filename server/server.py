@@ -1,44 +1,37 @@
 from flask import Flask
 from flask import request
 from flask import jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask import g
 import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///buttons.db'
 
-db = SQLAlchemy(app)
-
-class Buttons(db.Model):
-    id = db.Column(db.String, primary_key=True)
-    color = db.Column(db.String(20), nullable=False)
-
-new_button = Buttons(id="button", color="Black")
-
-try:
-    db.session.add(new_button)
-    db.session.commit()
-except:
-    return "There was error adding the first element of db"
+# def get_color():
+#     if 'color' not in g:
+#         g.color = "black"
+#     return g.color
+color = "black"
 
 @app.route('/',methods = ['POST', 'GET'])
 def result():
+    global color
     print("Entered result()")
 
     if request.method == 'POST':
         content = request.get_json(force=True)
-        thiscolor = content['button']
+        # with app.app_context(): 
+        color = content["Button"]
+        # g['color'] = content["Button"]
+        print("content[Button] = " + content["Button"], "\n\tg.color = ", color)
 
-        x = db.session.query(Buttons).get("button")
-        x.color = thiscolor
-        db.session.commit()
-
-        return str(content)
+        return jsonify(content)
 
     if request.method == 'GET':
-        x = db.session.query(Buttons).first()
-        thiscolor = x.color
-        return str(thiscolor)
+        # with app.app_context(): 
+        c = color
+        # c = g.color
+        print("got color: " + c)
+        return c
 
 
 
