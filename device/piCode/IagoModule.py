@@ -21,7 +21,7 @@ class iagoClient():
         }
 
         #Send an HTTP POST message and block until a respone 
-        response = requests.post("http://{}/send-mail".format(addr), 
+        response = requests.post("http://{}/".format(addr), 
                                 headers=headers,
                                 data=json.dumps(payload))
         pprint(response.json())
@@ -37,10 +37,10 @@ address='localhost:5000'
 buttonClient = iagoClient(address)
 while True:
     if  XButton.is_pressed:
-        buttonClient.send_press('blue', address)
+        buttonClient.send_press('blue", address)
         print("blue")
     elif OButton.is_pressed:
-        buttonClient.send_press('yellow', address)
+        buttonClient.send_press("yellow", address)
         print("yellow")
     elif TButton.is_pressed:
         buttonClient.send_press('green', address)
