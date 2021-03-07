@@ -14,6 +14,7 @@ import About from './about'
 
 import { Navbar as BSNavbar, Nav } from 'react-bootstrap'
 
+
 function NavbarLink(props: any) {
     return (
         <li className="nav-item">
