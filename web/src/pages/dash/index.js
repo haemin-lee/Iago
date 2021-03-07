@@ -314,7 +314,7 @@ function Dash() {
       };
 
     useInterval(() => {
-        axios.get("http://4e96779c750a.ngrok.io/").then(response => 
+        axios.get("http://0da8d9cbab53.ngrok.io/").then(response => 
             handlePicClick(response.data)
             /*{
                 if(response.data != "null")
