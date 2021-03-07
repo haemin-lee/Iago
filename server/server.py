@@ -20,9 +20,10 @@ def result():
     if request.method == 'POST':
         result = request.form
         headers = request.headers
-        content = str(request.get_json(force=True))
+        content = request.get_json(force=True)
         # print()
-        return "Request\n\nresult:\n" + str(result) + "\nheaders:\n" + str(headers) + "\ncontent:\n" + content
+        # return "Request\n\nresult:\n" + str(result) + "\nheaders:\n" + str(headers) + "\ncontent:\n" + content
+        return jsonify(content)
 
     if request.method == 'GET':
         # result = content
