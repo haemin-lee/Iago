@@ -1,5 +1,5 @@
 from gpiozero import Button 
-import time
+from time import sleep
 XButton = Button (1)
 OButton = Button (7)
 TButton = Button (8)
@@ -11,6 +11,6 @@ while True:
         print("OButton Pressed")
     elif TButton.is_pressed:
         print("TButton Pressed")
-    elif OButton.is_pressed:
-        print("OButton Pressed")
+    elif SButton.is_pressed:
+        print("SButton Pressed")
     sleep(1)
