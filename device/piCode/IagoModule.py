@@ -2,7 +2,7 @@ from pprint import pprint
 
 from gpiozero import Button 
 from time import sleep
-from flask import flask
+from flask import Flask
 import requests 
 import json 
 
@@ -31,17 +31,17 @@ XButton = Button (1)
 OButton = Button (7)
 TButton = Button (8)
 SButton = Button (25)
-address='162.208.92.132'
+address='162.208.92.132:5000'
 
-def main():
-    buttonClient = iagoClient(address)
-    while True:
-        if  XButton.is_pressed:
-            buttonClient.send_press('blue', address)
-        elif OButton.is_pressed:
-            buttonClient.send_press('yellow', address)
-        elif TButton.is_pressed:
-            buttonClient.send_press('green', address)
-        elif SButton.is_pressed:
-            buttonClient.send_press('red', address)
-        sleep(0.5)
+
+buttonClient = iagoClient(address)
+while True:
+    if  XButton.is_pressed:
+        buttonClient.send_press('blue', address)
+    elif OButton.is_pressed:
+        buttonClient.send_press('yellow', address)
+    elif TButton.is_pressed:
+        buttonClient.send_press('green', address)
+    elif SButton.is_pressed:
+        buttonClient.send_press('red', address)
+    sleep(0.5)
