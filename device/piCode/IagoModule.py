@@ -12,6 +12,7 @@ class iagoClient():
 
     def send_press(self, color, addr):
         #post request to post the button press
+        print("Entered send_press")
         headers = {
             'Content-Type': 'application/json',
             'Authorization': None
@@ -21,10 +22,16 @@ class iagoClient():
         }
 
         #Send an HTTP POST message and block until a respone 
-        response = requests.post("http://{}/".format(addr), 
+        # response = requests.post("http://{}/".format(addr), 
+        #                         headers=headers,
+        #                         data=json.dumps(payload))
+        response = requests.post(f"http://{addr}", 
                                 headers=headers,
                                 data=json.dumps(payload))
+
+
         pprint(response.json())
+        # jsonify(response.json())
 
 #GPIO button stuff/hardware 
 xButton = Button(1)
@@ -33,7 +40,7 @@ tButton = Button(8)
 sButton = Button(25)
 
 
-address='162.208.92.132:5000'
+address='e3060b9931e9.ngrok.io/'
 
 
 buttonClient = iagoClient(address)
