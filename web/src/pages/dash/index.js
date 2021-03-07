@@ -43,6 +43,20 @@ function Dash() {
 
     const user = useSelector((state) => state.user)
 
+    // function getRequest()
+    // {
+    //     axios.get("http://127.0.0.1:5000/")
+    //     .then(function (response) {
+    //     console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //     console.log(error);
+    //     })
+    //     .then(function () {
+    //     // always executed
+    //     });
+    // }
+
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
       
@@ -91,11 +105,11 @@ function Dash() {
                                 </div>
                             </Col>
                             <Col>
-                            <div
-                            onClick={() => handlePicClick(1)}>
-                                2.
-                                {GridItem(1)}
-                            </div>
+                                <div
+                                onClick={() => handlePicClick(1)}>
+                                    2.
+                                    {GridItem(1)}
+                                </div>
                             </Col>
                         </Row>
                         <Row>
@@ -127,13 +141,14 @@ function Dash() {
                     <h3>Score: {correct}/5</h3>
                 </div>
             );
-
+        
         }
         
     }
 
     function handlePicClick(num)
     {
+
         if(num == randomNum)
         {
             //correct
@@ -147,17 +162,21 @@ function Dash() {
             alert(errorMsg);
         }
         counter++;
-        shuffle(personArray);
+        shuffle(personArrState);
+        console.log(personArrState);
         let temp =  min + Math.random() * (max - min);
         setRandomNum(Math.round(temp));
     }
 
     useEffect(() => {
+        axios.get("http://localhost:5000").then(response => console.log(response));
+
         let temp =  min + Math.random() * (max - min);
         setRandomNum(Math.round(temp));
         let tempPersonArray = personArray;
         shuffle(tempPersonArray);
     }, [])
+
 
     
     return (

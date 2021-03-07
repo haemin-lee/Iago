@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
 import _ from 'lodash'
 
@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { login, logout } from '../redux/user'
 
 import Home from './home'
-import { Login, Register } from './auth'
+import { LoginDoctor, LoginUser, Register } from './auth'
 import Dash from './dash'
 import Setup from './setup'
 import About from './about'
+import Splash from './splash'
 
 import { Navbar as BSNavbar, Nav } from 'react-bootstrap'
 
@@ -47,7 +48,10 @@ function Navbar(props: any) {
                             </NavbarLink>
                         </Nav>
                         <Nav>
-                            <NavbarLink to="/login">Login</NavbarLink>
+                            <NavbarLink to="/loginDoctor">Doctor Login</NavbarLink>
+                        </Nav>
+                        <Nav>
+                            <NavbarLink to="/loginUser">User Login</NavbarLink>
                         </Nav>
                     </>
                 ) : (
@@ -77,6 +81,7 @@ function Navbar(props: any) {
 }
 
 function App() {
+    const [whichPage, setWhichPage] = useState(3)
     const dispatch = useDispatch()
     const user = useSelector((state) => state.user)
 
@@ -84,14 +89,17 @@ function App() {
         dispatch(login({}))
     }, [])
 
-    return (
-        <Router>
-            <Navbar />
-            {_.isEmpty(user) === true ? (
+    function changeWhichPageFromChild(newValue) {
+        setWhichPage(newValue);
+      }
+
+    function conditionalRender()
+    {
+        console.log(whichPage);
+        if(whichPage == 1) //user
+        {
+            return(
                 <Switch>
-                    <Route exact path="/login">
-                        <Login />
-                    </Route>
                     <Route exact path="/register">
                         <Register />
                     </Route>
@@ -99,7 +107,11 @@ function App() {
                         <Home />
                     </Route>
                 </Switch>
-            ) : (
+            );
+        }
+        else if(whichPage == 2) //
+        {
+            return(
                 <Switch>
                     <Route exact path="/">
                         <Dash />
@@ -111,7 +123,31 @@ function App() {
                         <About />
                     </Route>
                 </Switch>
-            )}
+            );
+           
+        }
+        else if (whichPage == 3)
+        {
+            return(
+                <Switch>
+                    <Route exact path="/">
+                        <Splash />
+                    </Route>
+                    <Route exact path="/loginDoctor">
+                        <LoginDoctor value={whichPage} onChange={changeWhichPageFromChild} />
+                    </Route>
+                    <Route exact path="/loginUser">
+                        <LoginUser value={whichPage} onChange={changeWhichPageFromChild} />
+                    </Route>
+                </Switch>
+            );
+        }
+    }
+
+    return (
+        <Router>
+            <Navbar />
+            {conditionalRender()}
         </Router>
     )
 }
