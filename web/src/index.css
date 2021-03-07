@@ -1,0 +1,82 @@
+:root {
+    --background-color: #fff;
+    --text-color: #000;
+    --main-color: #0063f9;
+    --nav-link-color: #000;
+    --highlight-color: rgba(53, 255, 240, 0.45);
+    --footer-color: #fff;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    font-family: 'Poppins', Helvetica, Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+h1,
+h2 {
+    font-weight: 700;
+    font-size: 36px;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--main-color);
+}
+
+p {
+    font-size: 18px;
+}
+
+a {
+    color: var(--main-color);
+}
+
+.navbar .navbar-brand {
+    margin-left: 60px;
+    margin-right: 80px;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--nav-link-color);
+}
+
+.navbar .navbar-nav .nav-link {
+    color: var(--nav-link-color);
+    margin-right: 30px;
+    font-size: 18px;
+    transition: 0.25s all;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    transition: 0.25s all;
+}
+
+@media only screen and (max-width: 600px) {
+    h1,
+    h2 {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+}

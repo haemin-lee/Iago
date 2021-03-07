@@ -1,0 +1,36 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "babel-node index.js",
+        "dev": "nodemon -r dotenv/config index.js --exec babel-node",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "compression": "^1.7.4",
+        "connect-redis": "^5.1.0",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "mongoose": "^5.11.18",
+        "passport": "^0.4.1",
+        "passport-local": "^1.0.0",
+        "redis": "^3.0.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/node": "^7.12.10",
+        "@babel/preset-env": "^7.12.10",
+        "babel-plugin-module-resolver": "^4.1.0",
+        "dotenv": "^8.2.0",
+        "eslint": "^7.15.0",
+        "eslint-import-resolver-babel-module": "^5.2.0",
+        "eslint-plugin-import": "^2.22.1",
+        "nodemon": "^2.0.6",
+        "prettier": "^2.2.1"
+    }
+}
