@@ -86,7 +86,7 @@ function App() {
     return (
         <Router>
             <Navbar />
-            {_.isEmpty(user) === false ? (
+            {_.isEmpty(user) === true ? (
                 <Switch>
                     <Route exact path="/login">
                         <Login />
